@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+
+    <title>Accounts</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="icon" href=""/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+  <a class="navbar-brand" href="{% url 'home' %}">AMH</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+    <ul class="navbar-nav mr-auto">
+
+      {% if request.user.is_authenticated %}
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'history' %}">Transaction Overview</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'pending_deposit' %}">Pending Deposits </a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'pending_withdrawal' %}">Pending Withdrawals </a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'pending_bonus' %}">Pending Bonus</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'completed_transaction' %}">Completed Transactions</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'account_settings' %}">Settings </a>
+      </li>
+
+      {% endif %}
+
+    </ul>
+
+
+    <div class="form-inline my-2 my-lg-0">
+
+      {% if request.user.is_authenticated %}
+
+          <span style="color:#fff;">Hello, {{request.user}}</span>
+
+          <a href="{% url 'logout' %}" class="btn btn-warning" style="margin: 5px;">Logout</a>
+
+      {% else %}
+
+          <a href="{% url 'signup' %}" class="btn btn-success" style="margin: 5px;">Sign up!</a>
+
+          <a href="{% url 'signin' %}"class="btn btn-warning">Login!</a>
+
+      {% endif %}
+
+    </div>
+
+
+  </div>
+
+
+</nav>
+<div class="container">
+
+<br>
+
+<div class="row">
+
+    <div class="col">
+
+        <div class="col-sm">
+
+            <div class="card text-center text-white mb-3 " id="" style="background-color: green !important;">
+
+                <div class="card-headers" id="headers">
+
+                    <h5 class="card-title">Total transactions completed</h5>
+                    <hr>
+                </div>
+
+                <div class="card-body">
+                    <h3 class="card-title">{{total_completed_transaction|floatformat:"0"}}</h3>
+                </div>
+
+            </div>
+
+       </div>
+
+    </div>
+
+    <div class="col">
+
+        <div class="col-sm">
+
+            <div class="card text-center text-white mb-3 " id="" style="background-color: #A52A2A !important;">
+
+                <div class="card-headers">
+
+                    <h5 class="card-title">Total pending withdrawals</h5>
+                    <hr>
+                </div>
+
+                <div class="card-body">
+                    <h3 class="card-title">{{total_withdrawal}}</h3>
+                </div>
+
+            </div>
+
+       </div>
+
+    </div>
+
+    <div class="col">
+
+        <div class="col-sm">
+
+            <div class="card text-center text-white mb-3 " id="" style="background-color: orange !important;">
+
+                <div class="card-headers">
+
+                    <h5 class="card-title">Total pending deposits</h5>
+                    <hr>
+                </div>
+
+                <div class="card-body">
+                    <h3 class="card-title">{{total_payment_id}}</h3>
+                </div>
+
+            </div>
+
+       </div>
+
+    </div>
+
+    <div class="col">
+
+        <div class="col-sm">
+
+            <div class="card text-center text-white mb-3 " id="" style="background-color: green !important">
+
+                <div class="card-headers">
+
+                    <h5 class="card-title">Total pending bonus</h5>
+                    <hr>
+                </div>
+
+                <div class="card-body">
+                    <h3 class="card-title">{{total_bonus}}</h3>
+                </div>
+
+            </div>
+
+       </div>
+
+    </div>
+
+
+</div>
+
+<br>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <h6>Last 5 Pending Deposits</h6>
+
+        <hr>
+
+        <div class="card card-body">
+
+            <a class="btn btn-warning btn-sm btn-block" href="{% url 'pending_deposit' %}">More Pending deposits</a>
+
+            <table class="table table-sm">
+
+                <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+
+                </tr>
+                 {% for i in last_five_payment_id %}
+                <tr>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'pending_deposit' %}">View all</a></td>
+                    <td>{{i.payment_id}}</td>
+                    <td>{{i.price_amount|floatformat:"2"}}</td>
+                    <td>{{i.date_created|date:"d M, Y"}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-6">
+
+        <h6>Last 5 Pending Withdrawals</h6>
+
+        <hr>
+
+        <div class="card card-body">
+
+            <a class="btn btn-danger btn-sm btn-block" href="{% url 'pending_withdrawal' %}">More Pending withdrawals</a>
+
+            <table class="table table-sm">
+
+                <tr>
+
+                    <th></th>
+                    <th>Payout currency</th>
+                    <th>amount</th>
+                    <th>date requested</th>
+
+                </tr>
+                 {% for i in last_five_withdrawal %}
+                <tr>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'pending_withdrawal' %}">View all</a></td>
+                    <td>{{i.crypto_used_for_requesting_withdrawal}}</td>
+                    <td>{{i.amount|floatformat:"2"}}</td>
+                    <td>{{i.date_created|date:"d M, Y"}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+<br>
+
+<div class="container">
+    <br>
+    <div class="row">
+
+    <div class="col-md-6">
+
+        <h6>Last 5 Pending Bonus</h6>
+
+        <hr>
+
+        <div class="card card-body">
+
+            <a class="btn btn-success btn-sm btn-block" href="{% url 'pending_bonus' %}">More Pending bonus</a>
+
+            <table class="table table-sm">
+
+                <tr>
+
+                    <th></th>
+                    <th>Transaction Type</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+
+                </tr>
+                 {% for i in last_five_bonus %}
+                <tr>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'pending_bonus' %}">View all</a></td>
+                    <td>{{i.transaction_type}}</td>
+                    <td>{{i.amount|floatformat:"2"}}</td>
+                    <td>{{i.created|date:"d M, Y"}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-6">
+
+        <h6>Last 5 Completed Transactions</h6>
+
+        <hr>
+
+        <div class="card card-body">
+
+            <a class="btn btn-success btn-sm btn-block" href="{% url 'completed_transaction' %}">More Completed Transactions</a>
+
+            <table class="table table-sm">
+
+                <tr>
+
+                    <th></th>
+                    <th>Transaction Type</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+
+                </tr>
+                 {% for i in last_five_transaction %}
+                <tr>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'completed_transaction' %}">View all</a></td>
+                    <td>{{i.transaction_type}}</td>
+                    <td>USD {{i.amount|floatformat:"2"}}</td>
+                    <td>{{i.created|date:"d M, Y"}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

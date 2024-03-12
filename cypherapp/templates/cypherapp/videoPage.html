@@ -1,0 +1,402 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <base href="">
+    <meta charset="utf-8">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <!-- Fav Icon  -->
+    <link rel="icon" href="{% static 'logo.png' %}">
+    <!-- Page Title  -->
+    <title>Smartcontractsec.net - Dashboard</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'dash/dashlite.css' %}">
+    <link id="skin-default" rel="stylesheet" href="{% static 'dash/theme.css' %}">
+</head>
+<div id="google_translate_element"></div>
+                            <script type="text/javascript">
+                                function googleTranslateElementInit() {
+                                    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                                }
+                            </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<body class="nk-body bg-lighter npc-default has-sidebar ">
+<div class="nk-app-root">
+    <!-- main @s  -->
+    <div class="nk-main ">
+        <!-- sidebar @s  -->
+        <div class="nk-sidebar nk-sidebar-fixed is-dark " data-content="sidebarMenu">
+            <div class="nk-sidebar-element nk-sidebar-head">
+                <div class="nk-sidebar-brand">
+                    <a href="{% url 'home' %}" class="logo-link nk-sidebar-logo">
+                        <h3><span style="color:gold !important">S</span><span style="color:blue !important">M</span><span style="color:green !important">A</span><span style="color:gold !important">R</span><span style="color:red !important">T</span><span style="color:blue !important">CON</span><span style="color:gold !important">TRA</span><span style="color:blue !important">CT</span><span style="color:gold !important">SEC</span></h3>
+                    </a>
+                </div>
+                <div class="nk-menu-trigger mr-n2">
+                    <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="glyphicon glyphicon-home"></em></a>
+                    <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="glyphicon glyphicon-align-justify"></em></a>
+                </div>
+            </div><!-- .nk-sidebar-element -->
+            <div class="nk-sidebar-element">
+                <div class="nk-sidebar-content">
+                    <div class="nk-sidebar-menu" data-simplebar>
+                        <ul class="nk-menu">
+                            <li class="nk-menu-heading">
+                                <h6 class="overline-title text-primary-alt">Member Account</h6>
+                            </li><!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a href="{% url 'dashboard' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-home"></em></span>
+                                    <span class="nk-menu-text">Dashboard</span>
+                                </a>
+                            </li><!-- .nk-menu-item --><!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a href="{% url 'investmentPlans' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-usd"></em></span>
+                                    <span class="nk-menu-text">Package options</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{% url 'myreferals' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-user"></em></span>
+                                    <span class="nk-menu-text">Affiliate</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                            <li class="nk-menu-item has-sub">
+                                <a href="{% url 'notifications' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-bell"></em></span>
+                                    <span class="nk-menu-text">Important Notifications ( {{number_of_notifications}} )</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-item has-sub">
+                                <a href="{% url 'video_page' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-volume-up"></em></span>
+                                    <span class="nk-menu-text">Confrence meeting</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-heading">
+                                <h6 class="overline-title text-primary-alt">Finance</h6>
+                            </li><!-- .nk-menu-item --><!-- .nk-menu-item --><!-- .nk-menu-item --><!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a href="{% url 'loan' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-usd"></em></span>
+                                    <span class="nk-menu-text">Request Loan</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{% url 'reinvest' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-repeat"></em></span>
+                                    <span class="nk-menu-text">Reinvest</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{% url 'withdrawal' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-credit-card"></em></span>
+                                    <span class="nk-menu-text">Withdrawal</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                            <li class="nk-menu-item has-sub">
+                                <a href="{% url 'history' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-book"></em></span>
+                                    <span class="nk-menu-text">History</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-item has-sub">
+                                <a href="{% url 'transfer_funds' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-transfer"></em></span>
+                                    <span class="nk-menu-text">Transfer Funds</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-heading">
+                                <h6 class="overline-title text-primary-alt">Settings</h6>
+                            </li><!-- .nk-menu-item -->
+                            <li class="nk-menu-item has-sub">
+                                <a href="{% url 'account_settings' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-wrench"></em></span>
+                                    <span class="nk-menu-text">KYC Verification</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-item has-sub">
+                                <a href="{% url 'logout' %}" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="glyphicon glyphicon-off"></em></span>
+                                    <span class="nk-menu-text">Logout</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                        </ul><!-- .nk-menu -->
+                    </div><!-- .nk-sidebar-menu -->
+                </div><!-- .nk-sidebar-content -->
+            </div><!-- .nk-sidebar-element -->
+        </div>
+        <!-- sidebar @e  -->
+        <!-- wrap @s  -->
+        <div class="nk-wrap ">
+            <!-- main header @s  -->
+            <div class="nk-header nk-header-fixed is-light">
+                <div class="container-fluid">
+                    <div class="nk-header-wrap">
+                        <div class="nk-menu-trigger d-xl-none ml-n1">
+                            <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="glyphicon glyphicon-align-justify"></em></a>
+                        </div>
+                        <div class="nk-header-brand d-xl-none">
+                            <a href="{% url 'dashboard' %}" class="logo-link">
+                                <h3><span style="color:gold !important">S</span><span style="color:blue !important">M</span><span style="color:green !important">A</span><span style="color:gold !important">R</span><span style="color:red !important">T</span><span style="color:blue !important">CON</span><span style="color:gold !important">TRA</span><span style="color:blue !important">CT</span><span style="color:gold !important">SEC</span></h3>
+                            </a>
+                        </div><!-- .nk-header-brand -->
+                        <div class="nk-header-tools">
+                            <ul class="nk-quick-nav">
+                                <li class="dropdown user-dropdown">
+                                    <a href="#" class="dropdown-toggle mr-n1" data-toggle="dropdown">
+                                        <div class="user-toggle">
+                                            <div class="user-avatar sm">
+                                                <em class="glyphicon glyphicon-user"></em>
+                                            </div>
+                                            <div class="user-info d-none d-xl-block">
+                                                                                                <div class="user-name dropdown-indicator">{{request.user.username}}</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                                        <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                            <div class="user-card">
+                                                <div class="user-avatar">
+                                                    <span><em class="glyphicon glyphicon-user"></em></span>
+                                                </div>
+                                                <div class="user-info">
+                                                    <span class="lead-text">{{request.user.username}}</span>
+                                                    <span class="sub-text">{{request.user.email}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-inner">
+                                            <ul class="link-list">
+                                                <li><a href="{% url 'account_settings' %}"><em class="glyphicon glyphicon-user"></em><span>View Profile</span></a></li>
+                                                <li><a href="{% url 'investmentPlans' %}"><em class="glyphicon glyphicon-usd"></em><span>Package Option</span></a></li>
+                                                <li><a href="{% url 'withdrawal' %}"><em class="glyphicon glyphicon-credit-card"></em><span>Withdraw</span></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropdown-inner">
+                                            <ul class="link-list">
+                                                <li><a href="{% url 'logout' %}"><em class="glyphicon glyphicon-off"></em><span>Sign out</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- .nk-header-wrap -->
+                </div><!-- .container-fliud -->
+            </div>
+            <!-- main header @e  -->
+            <!-- content @s  -->
+                <br><br><br>
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [
+                {
+                    "proName": "FX_IDC:EURUSD",
+                    "title": "EUR/USD"
+                },
+                {
+                    "proName": "BITSTAMP:BTCUSD",
+                    "title": "BTC/USD"
+                },
+                {
+                    "proName": "BITSTAMP:ETHUSD",
+                    "title": "ETH/USD"
+                },
+                {
+                    "description": "BCH/USD",
+                    "proName": "KRAKEN:BCHUSD"
+                },
+                {
+                    "description": "BNB/BTC",
+                    "proName": "BINANCE:BNBBTC"
+                },
+                {
+                    "description": "DOT/USD",
+                    "proName": "KRAKEN:DOTUSD"
+                },
+                {
+                    "description": "BNB/USDT",
+                    "proName": "BINANCE:BNBUSDT"
+                },
+                {
+                    "description": "ETH/USDT",
+                    "proName": "KRAKEN:ETHUSDT"
+                },
+                {
+                    "description": "TRX/USD",
+                    "proName": "BINANCE:TRXUSDT"
+                },
+                {
+                    "description": "BTT/USDT",
+                    "proName": "BINANCE:BTTUSDT"
+                },
+                {
+                    "description": "BTT/USD",
+                    "proName": "BITFINEX:BTTUSD"
+                },
+                {
+                    "description": "NEO/USD",
+                    "proName": "BITFINEX:NEOUSD"
+                }
+            ],
+                "colorTheme": "dark",
+                "isTransparent": false,
+                "displayMode": "adaptive",
+                "locale": "en"
+            }
+        </script>
+    </div>
+    <!-- TradingView Widget END -->
+    <div class="nk-content ">
+        <div class="container-fluid">
+            <div class="nk-content-inner">
+                <div class="nk-content-body">
+                    <div class="nk-block-head nk-block-head-sm">
+                        <div class="nk-block-between">
+                            <div class="nk-block-head-content">
+                                <h3 class="nk-block-title page-title">Confrence Page</h3>
+                                <p>Hi <b>{{request.user.username}}</b>, welcome to our confrence meeting. Use the link below to join our meeting. See you there.</p>
+                            </div><!-- .nk-block-head-content -->
+                            <div class="nk-block-head-content">
+                                <div class="toggle-wrap nk-block-tools-toggle">
+                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="glyphicon glyphicon-credit-card"></em></a>
+                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                        <ul class="nk-block-tools g-3">
+                                            <li><a href="{% url 'investmentPlans' %}" class="btn btn-white btn-dim btn-outline-light"><span>Package Options</span><em class="glyphicon glyphicon-usd"></em></a></li>
+                                            <li class="nk-block-tools-opt"><a href="{% url 'withdrawal' %}" class="btn btn-primary"><span>Withdraw</span><em class="glyphicon glyphicon-credit-card"></em></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!-- .nk-block-head-content -->
+                        </div><!-- .nk-block-between -->
+                    </div><!-- .nk-block-head -->
+                    <div class="nk-block">
+                        <div class="row g-gs">
+                            <div class="col-xxl-12 col-md-12">
+                                <div class="card h-100">
+                                    <div class="card-inner">
+                                        <div class="card-head">
+                                            <h5 class="card-title">Join our live and acquire unimaginable knowledge about Smartcontractsec.net and the future</h5>
+                                            <p>Simply copy the link and paste it in your browser.</p>
+                                        </div>
+                                        <form action="#">
+                                            {% for i in videos %}
+                                            <div class="form-group">
+
+                                                <label class="form-label" for="full-name">Meeting Agenda: {{i.meeting_agenda}}</label>
+
+                                                <div class="form-control-wrap">
+                                                    <input type="text" readonly class="form-control js-copytextarea" value="https://www.Smartcontractsec.net/images/{{i.video}}" id="full-name">
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-lg btn-primary js-textareacopybtn">Copy Link</button>
+
+                                            </div>
+                                            {% endfor %}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div><!-- .col -->
+                            <div class="col-xxl-12 col-md-12">
+                                <div class="card h-100">
+                                    <div class="card-inner">
+                                        <div class="card-head">
+                                            <h5 class="card-title">Invite members to Smartcontractsec.net and earn more</h5>
+                                            <p>Your unique link you can use to invite more members to join you on Smartcontractsec.net. Click the button below to copy.</p>
+                                        </div>
+                                        <form action="#">
+                                            <div class="form-group">
+                                                <label class="form-label" for="full-name">Affiliate Link</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" readonly class="form-control js-copytextarea" value="www.Smartcontractsec.net/main-view/{{client_code}}" id="full-name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-lg btn-primary js-textareacopybtn">Copy your affiliate link</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- .row -->
+                    </div><!-- .nk-block -->
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-29fc0be ob-is-e3" data-id="29fc0be" data-element_type="column" data-settings="{&quot;_ob_bbad_is_stalker&quot;:&quot;no&quot;,&quot;_ob_teleporter_use&quot;:false,&quot;_ob_column_hoveranimator&quot;:&quot;no&quot;,&quot;_ob_column_has_pseudo&quot;:&quot;no&quot;}">
+                                    <div class="elementor-widget-wrap elementor-element-populated">
+                                        <div class="elementor-element elementor-element-b6386cd ob-harakiri-inherit elementor-widget elementor-widget-heading" data-id="b6386cd" data-element_type="widget" data-settings="{&quot;_ob_harakiri_writing_mode&quot;:&quot;inherit&quot;,&quot;_ob_perspektive_use&quot;:&quot;no&quot;,&quot;_ob_shadough_use&quot;:&quot;no&quot;,&quot;_ob_allow_hoveranimator&quot;:&quot;no&quot;,&quot;_ob_widget_stalker_use&quot;:&quot;no&quot;}" data-widget_type="heading.default">
+                                            <div class="elementor-widget-container">
+                                                <h4 class="elementor-heading-title elementor-size-default">Language
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-0361105 ob-harakiri-inherit elementor-widget elementor-widget-heading" data-id="0361105" data-element_type="widget" data-settings="{&quot;_ob_harakiri_writing_mode&quot;:&quot;inherit&quot;,&quot;_ob_perspektive_use&quot;:&quot;no&quot;,&quot;_ob_shadough_use&quot;:&quot;no&quot;,&quot;_ob_allow_hoveranimator&quot;:&quot;no&quot;,&quot;_ob_widget_stalker_use&quot;:&quot;no&quot;}" data-widget_type="heading.default">
+                                            <div class="elementor-widget-container">
+                            <span class="elementor-heading-title elementor-size-default">We support your local languages.
+                            </span>
+                                            </div>
+                                        </div>
+
+                                </div>
+
+
+    <script>
+        var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+        copyTextareaBtn.addEventListener('click', function(event) {
+            var copyTextarea = document.querySelector('.js-copytextarea');
+            copyTextarea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'successful' : 'unsuccessful';
+
+                console.log('Copying text command was ' + msg);
+            } catch (err) {
+                console.log('Oops, unable to copy');
+            }
+        });
+    </script>
+            <!-- content @e  -->
+        </div>
+        <!-- wrap @e  -->
+    </div>
+    <!-- main @e  -->
+</div>
+<!-- app-root @e  -->
+<!-- JavaScript -->
+
+<script src="{% static 'dash/bundle.js' %}"></script>
+<script src="{% static 'dash/scripts.js'%}"></script>
+<script src="{% static 'dash/chart-ecommerce.js' %}"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
